@@ -8,6 +8,15 @@ OSES=(
 )
 GOARCH='amd64'
 
+export GOPATH=$(pwd)
+
+go get
+go get -u github.com/ugorji/go/codec/codecgen
+
+cd src/github.com/coreos/go-etcd/etcd
+$GOPATH/bin/codecgen -d 1978 -o response.generated.go response.go
+cd $GOPATH
+
 for GOOS in "${OSES[@]}"; do
   echo "Building $GOOS-$GOARCH binary"
   echo "-----"
@@ -28,3 +37,5 @@ done
 #      -e "GOOS=linux" -e "GOARCH=$GOARCH" \
 #      golang:1.9-alpine \
 #        go build -v -o "$PKGDIR/linux-alpine/summon-s3"
+
+rm -rf bin/ src/

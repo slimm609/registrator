@@ -1,9 +1,9 @@
 package main
 
 import (
-	_ "github.com/slimm609/registrator/consul"
-	_ "github.com/slimm609/registrator/consulkv"
-	_ "github.com/slimm609/registrator/etcd"
-	_ "github.com/slimm609/registrator/skydns2"
-	_ "github.com/slimm609/registrator/zookeeper"
+	_ "github.com/gliderlabs/registrator/consul"
+	_ "github.com/gliderlabs/registrator/consulkv"
+	_ "github.com/gliderlabs/registrator/etcd"
+	_ "github.com/gliderlabs/registrator/skydns2"
+	_ "github.com/gliderlabs/registrator/zookeeper"
 )
