@@ -9,7 +9,7 @@ import (
 	"regexp"
 	"strconv"
 
-	etcd2 "github.com/coreos/go-etcd/etcd"
+	etcd2 "github.com/coreos/etcd/client"
 	"github.com/gliderlabs/registrator/bridge"
 	etcd "gopkg.in/coreos/go-etcd.v0/etcd"
 )
