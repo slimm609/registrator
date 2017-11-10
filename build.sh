@@ -31,13 +31,18 @@ for GOOS in "${OSES[@]}"; do
        go build -v -ldflags "-X main.Version=$(cat VERSION)" -o "$PKGDIR/$GOOS/registrator"
 done
 
+  echo "Building Alpine golang docker image"
+  echo "-----"
+  docker build -f Dockerfile.alpine_build -t golang:1.9-alpine-gcc .
+
   echo "Building linux-alpine binary"
   echo "-----"
 
   docker run --rm \
       -v "$PWD:/go/src/$APP" -w "/go/src/$APP" \
       -e "GOOS=linux" -e "GOARCH=$GOARCH" \
-      golang:1.9-alpine \
-        go build -v -o "$PKGDIR/linux-alpine/summon-s3"
+      -e "GOPATH=/go/src/$APP" \
+      golang:1.9-alpine-gcc \
+        go build -v -ldflags "-X main.Version=$(cat VERSION)" -o "$PKGDIR/$GOOS-alpine/registrator"
 
 rm -rf bin/ src/

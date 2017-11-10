@@ -1,0 +1,7 @@
+FROM golang:1.9-alpine
+
+RUN set -ex \
+	&& apk add --no-cache --virtual .build-deps \
+		libgit2-dev \
+		alpine-sdk \
+		git 
